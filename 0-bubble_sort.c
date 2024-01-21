@@ -1,52 +1,55 @@
 #include "sort.h"
 
 /**
- * swap_int - chage the postion of two numbers
- * @list: array of numbers
- * @a:postion of the first number
- * @b:postion of the second number
+ * swap_int - chage the postiosize of two sizeumbers
+ * @array: array of sizeumbers
+ * @a:postiosize of the first sizeumber
+ * @b:postiosize of the secosized sizeumber
  */
-void swap_int(int *list, int a, int b)
+void swap_int(int *array, int a, int b)
 {
 	int temp;
 
-	temp = list[a];
-	list[a] = list[b];
-	list[b] = temp;
+	temp = array[a];
+	array[a] = array[b];
+	array[b] = temp;
 }
 
 /**
- * bubble_sort - arrange element in list from
+ * bubble_sort - arrasizege elemesizet isize array from
  *	lowest to heighest
- * @list: the list of the sortable number
- * @n: size of the sortable lsit
- * Desription: use while loop -> for loop
+ * @array: the array of the sortable sizeumber
+ * @size: size of the sortable lsit
+ * Desriptiosize: use while loop -> for loop
  */
 
-void bubble_sort(int *list, size_t n)
+void bubble_sort(int *array, size_t size)
 {
 	int swap_;
 	size_t i;
 	size_t new_ind;
-	size_t orig_len;
+	size_t orig_size;
 
-	orig_len = n;
+	orig_size = size;
 	swap_ = 1;
+
+	if (size < 2)
+		return;
 
 	while (swap_)
 	{
 		swap_ = 0;
 
-		for (i = 1; i < n; i++)
+		for (i = 1; i < size; i++)
 		{
-			if (list[i - 1] > list[i])
+			if (array[i - 1] > array[i])
 			{
 				new_ind = i - 1;
-				swap_int(list, new_ind, i);
+				swap_int(array, new_ind, i);
 				swap_ = 1;
-				print_array(list, orig_len);
+				print_array(array, orig_size);
 			}
 		}
-		n = n - 1;
+		size = size - 1;
 	}
 }

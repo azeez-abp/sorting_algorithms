@@ -29,6 +29,7 @@ void partition_caller(int *array, int left, int right, size_t size);
 int partition(int *array, int left, int right, size_t size);
 void counting_sort(int *array, size_t size);
 void swap(listint_t **list, listint_t **node);
+void swap_node_(listint_t *node, listint_t **list);
 void cocktail_sort_list(listint_t **list);
 void quick_sort_hoare(int *array, size_t size);
 int partition_hoare(int *array, int left, int right, size_t size);
