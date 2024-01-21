@@ -1,39 +1,33 @@
 #include "sort.h"
 /**
- * swap - chage the postion of two numbers
- * @list: array of numbers
- * @a:postion of the first number
- * @b:postion of the second number
- */
-void swap_(int *list, size_t a, size_t b)
-{
-	size_t temp;
-
-	temp = list[a];
-	list[a] = list[b];
-	list[b] = temp;
-}
-
-
-/**
  * selection_sort - function that sorts an array of integers in ascending
- * order using the Selection sort algorithm; find minimum element
+ * order using the Selection sort algorithm
  * @size: size of the array
  * @array: list with numbers
  */
 void selection_sort(int *array, size_t size)
 {
-	 size_t i, j, min_idx;
+	size_t i, index;
+	int tmp, swap, flag = 0;
 
-	for (i = 0; i < size - 1; i++)
+	if (array == NULL)
+		return;
+	for (i = 0; i < size; i++)
 	{
-		min_idx = i;
-		for (j = i + 1; j < size; j++)
+		tmp = i;
+		flag = 0;
+		for (index = i + 1; index < size; index++)
 		{
-			if (array[j] < array[min_idx])
-				min_idx = j;
+			if (array[tmp] > array[index])
+			{
+				tmp = index;
+				flag += 1;
+			}
 		}
-		swap_(array, i, min_idx);
-		print_array(array, size);
+		swap = array[i];
+		array[i] = array[tmp];
+		array[tmp] = swap;
+		if (flag != 0)
+			print_array(array, size);
 	}
 }
