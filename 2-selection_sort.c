@@ -1,13 +1,13 @@
-
+#include "sort.h"
 /**
  * swap - chage the postion of two numbers
  * @list: array of numbers
  * @a:postion of the first number
  * @b:postion of the second number
  */
-void swap(int *list, int a, int b)
+void swap_(int *list, size_t a, size_t b)
 {
-	int temp;
+	size_t temp;
 
 	temp = list[a];
 	list[a] = list[b];
@@ -24,8 +24,8 @@ void swap(int *list, int a, int b)
 void selection_sort(int *array, size_t size)
 {
 	int min;
-	int i;
-	int j;
+	size_t i;
+	size_t j;
 
 	i = 0;
 
@@ -41,7 +41,7 @@ void selection_sort(int *array, size_t size)
 			if (array[j] > min)
 			{
 				min = array[i];
-				swap(array, j, i);
+				swap_(array, j, i);
 				print_array(array, size);
 			}
 			j++;
