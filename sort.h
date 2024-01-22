@@ -38,4 +38,5 @@ void radix_count(int *array, int size, int j);
 void merge_sort(int *array, size_t size);
 void merge_caller(int *sub_array, int *array, int left, int right);
 void merge(int *sub_array, int *array, int left, int mid, int right);
+void heap_sort(int *array, size_t size);
 #endif

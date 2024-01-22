@@ -2,11 +2,11 @@
 #include <stdio.h>
 
 /**
- * swap - utility function to swap to integers
+ * swap_ - utility function to swap_ to integers
  * @a: integer a
  * @b: integer b
  **/
-void swap(int *a, int *b)
+void swap_(int *a, int *b)
 {
 	int t = *a;
 
@@ -43,7 +43,7 @@ void maxHeapify(int *array, size_t size, int idx, size_t n)
 	/* Change root, if needed*/
 	if (largest != idx)
 	{
-		swap(&array[idx], &array[largest]);
+		swap_(&array[idx], &array[largest]);
 		print_array(array, size);
 		maxHeapify(array, size, largest, n);
 	}
@@ -61,7 +61,7 @@ void heap_sort(int *array, size_t size)
 	 * Start from bottommost and rightmost internal mode and heapify all
      * internal modes in bottom up way
 	 */
-	if (array == '\0' || size < 2)
+	if (size < 2)
 		return;
 
 	for (i = (size - 2) / 2; i >= 0; --i)
@@ -78,7 +78,7 @@ void heap_sort(int *array, size_t size)
 		*it with the last item of the heap followed by reducing the
 		*size of heap by 1.
 		*/
-		swap(&array[0], &array[i]);
+		swap_(&array[0], &array[i]);
 		print_array(array, size);
 
 		/* Finally, heapify the root of tree.*/
