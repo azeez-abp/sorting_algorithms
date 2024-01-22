@@ -1,60 +1,52 @@
 #include "sort.h"
-#include <stdio.h>
-/**
- *_calloc - this is a calloc function
- *@nmemb: number of elemets
- *@size: bit size of each element
- *Return: pointer to memory assignement
- */
-void *_calloc(unsigned int nmemb, unsigned int size)
-{
-	unsigned int i = 0;
-	char *p;
+#include <stdlib.h>
 
-	if (nmemb == 0 || size == 0)
-		return ('\0');
-	p = malloc(nmemb * size);
-	if (p == '\0')
-		return ('\0');
-	for (i = 0; i < (nmemb * size); i++)
-		p[i] = '\0';
-	return (p);
-}
 /**
- * counting_sort - this is a counting sort method implementation
- * @array: array to sort
- * @size: array size
+ * counting_sort -  Sorts integers using counting sort algorithm.
+ * @array: List of data
+ * @size: Size of the array
+ *
+ * Return: Void.
  */
 void counting_sort(int *array, size_t size)
 {
-	int index, maximun = 0, *counter = '\0', *tmp = '\0';
-	size_t i;
+	int *tmp, *result;
+	int i, j, z, w, counter, maximum = 0;
 
-	if (array == '\0' || size < 2)
+	if (size < 2)
 		return;
-	/* find maximun number */
-	for (i = 0; i < size; i++)
-		if (array[i] > maximun)
-			maximun = array[i];
-	counter = _calloc(maximun + 1, sizeof(int));
-	tmp = _calloc(size + 1, sizeof(int));
-	/* count the array elements */
-	for (i = 0; i < size; i++)
-		counter[array[i]]++;
-	/* get the accumulative values */
-	for (index = 1; index <= maximun; index++)
-		counter[index] += counter[index - 1];
-	print_array(counter, maximun + 1);
-	/* get the new array sorted */
-	for (i = 0; i < size; ++i)
+	for (i = 0; i < (int)size; i++)
 	{
-		tmp[counter[array[i]] - 1] = array[i];
-		counter[array[i]]--;
+		if (maximum < array[i])
+			maximum = array[i];
 	}
-	/* replace old array to new array sorted */
-	for (i = 0; i < size; i++)
-		array[i] = tmp[i];
+	tmp = malloc(sizeof(int) * (maximum + 1));
+	if (tmp == NULL)
+		return;
+	result = malloc(sizeof(int) * size);
+	if (result == NULL)
+	{ free(tmp);
+		return;
+	}
+	for (w = 0; w < (maximum + 1); w++)
+	{ tmp[w] = 0;
+	}
+	for (i = 0; i < (int)size; i++)
+	{ tmp[array[i]] += 1;
+	}
+	counter = 0;
+	for (j = 0; j < (maximum + 1); j++)
+	{ counter += tmp[j];
+		tmp[j] = counter;
+	}
+	print_array(tmp, (maximum + 1));
+	for (z = 0; z < (int)size; z++)
+	{ result[tmp[array[z]] - 1] = array[z];
+		tmp[array[z]] -= 1;
+	}
+	for (z = 0; z < (int)size; z++)
+	{ array[z] = result[z];
+	}
 	free(tmp);
-	free(counter);
-
+	free(result);
 }
