@@ -1,11 +1,11 @@
 #include "sort.h"
 /**
-*swap - the positions of two elements into an array
+*swap_ - the positions of two elements into an array
 *@array: array
 *@item1: array element
 *@item2: array element
 */
-void swap(int *array, ssize_t item1, ssize_t item2)
+void swap_(int *array, ssize_t item1, ssize_t item2)
 {
 	int tmp;
 
@@ -37,7 +37,7 @@ int hoare_partition(int *array, int first, int last, int size)
 		} while (array[finder] > pivot);
 		if (current >= finder)
 			return (current);
-		swap(array, current, finder);
+		swap_(array, current, finder);
 		print_array(array, size);
 	}
 }
