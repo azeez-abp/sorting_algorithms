@@ -19,13 +19,13 @@ void swap_(int arr[], int item1, int item2, int order)
 	}
 }
 /**
- * merge - sort bitonic sequences recursively in both orders
+ * merge_ - sort bitonic sequences recursively in both orders
  * @arr: array
  * @low: first element
  * @nelemnt: elements number
  * @order: 1: ascending order, 0 descending order
  */
-void merge(int arr[], int low, int nelemnt, int order)
+void merge_(int arr[], int low, int nelemnt, int order)
 {
 	int mid, i;
 
@@ -34,8 +34,8 @@ void merge(int arr[], int low, int nelemnt, int order)
 		mid = nelemnt / 2;
 		for (i = low; i < low + mid; i++)
 			swap_(arr, i, i + mid, order);
-		merge(arr, low, mid, order);
-		merge(arr, low + mid, mid, order);
+		merge_(arr, low, mid, order);
+		merge_(arr, low + mid, mid, order);
 	}
 }
 /**
@@ -65,7 +65,7 @@ void bitonicsort(int arr[], int low, int nelemnt, int order, int size)
 		mid = nelemnt / 2;
 		bitonicsort(arr, low, mid, 1, size);
 		bitonicsort(arr, low + mid, mid, 0, size);
-		merge(arr, low, nelemnt, order);
+		merge_(arr, low, nelemnt, order);
 		if (order <= 0)
 		{
 			printf("Result [%i/%i] (DOWN):\n", nelemnt, size);
